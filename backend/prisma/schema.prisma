@@ -10,34 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id          Int     @id @default(autoincrement())
-  isVerified  Boolean
-  lensHandle  String?
-  wallet      String?
-  lensProfile String?
-  email       String?
-  github      String?
-}
-
-model Intrests {
-  id      Int     @id @default(autoincrement())
-  intrest String?
-}
-
-model Jobs {
-  id             Int      @id @default(autoincrement())
-  position       String
-  companyName    String
-  location       String
-  experience     String
-  postedOn       DateTime @default(now())
-  jobDescription String
-  salaryRange    String
-  email          String
-  website        String
-}
-
 enum Status {
   PENDING
   VERIFIED
@@ -50,7 +22,7 @@ model pgmigrations {
   run_on DateTime @db.Timestamp(6)
 }
 
-model GitLinks {
+model TPF {
   id             Int       @id @default(autoincrement())
   email          String    @db.VarChar(30)
   repo           String    @db.VarChar(50)
