@@ -23,17 +23,15 @@ model pgmigrations {
 }
 
 model TPF {
-  id             Int       @id @default(autoincrement())
-  email          String    @db.VarChar(30)
-  repo           String    @db.VarChar(50)
-  isVerified     Boolean
-  callback_id    String    @db.VarChar(1000)
-  proofs         String?
-  status         Status
-  template_id    String    @db.VarChar(200)
-  template_url   String    @db.Text
-  created_at     DateTime  @default(now())
-  updated_at     DateTime? @updatedAt
-  requiredSkills String?   @db.VarChar(1000)
-  lensProfile    String?   @db.VarChar(30)
+  id           Int       @id @default(autoincrement())
+  instagram_id String    @db.VarChar(30)
+  twitter_id   String    @db.VarChar(30)
+  linkedIn_id  String    @db.VarChar(30)
+  callback_id  String    @db.VarChar(1000)
+  proofs       String?
+  status       Status
+  template_id  String    @db.VarChar(200)
+  template_url String    @db.Text
+  created_at   DateTime  @default(now())
+  updated_at   DateTime? @updatedAt
 }
