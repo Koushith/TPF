@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int     @id @default(autoincrement())
+  isVerified  Boolean
+  lensHandle  String?
+  wallet      String?
+  lensProfile String?
+  email       String?
+  github      String?
+}
+
+model Intrests {
+  id      Int     @id @default(autoincrement())
+  intrest String?
+}
+
+model Jobs {
+  id             Int      @id @default(autoincrement())
+  position       String
+  companyName    String
+  location       String
+  experience     String
+  postedOn       DateTime @default(now())
+  jobDescription String
+  salaryRange    String
+  email          String
+  website        String
+}
+
+enum Status {
+  PENDING
+  VERIFIED
+  FAILED
+}
+
+model pgmigrations {
+  id     Int      @id @default(autoincrement())
+  name   String   @db.VarChar(225)
+  run_on DateTime @db.Timestamp(6)
+}
+
+model GitLinks {
+  id             Int       @id @default(autoincrement())
+  email          String    @db.VarChar(30)
+  repo           String    @db.VarChar(50)
+  isVerified     Boolean
+  callback_id    String    @db.VarChar(1000)
+  proofs         String?
+  status         Status
+  template_id    String    @db.VarChar(200)
+  template_url   String    @db.Text
+  created_at     DateTime  @default(now())
+  updated_at     DateTime? @updatedAt
+  requiredSkills String?   @db.VarChar(1000)
+  lensProfile    String?   @db.VarChar(30)
+}
